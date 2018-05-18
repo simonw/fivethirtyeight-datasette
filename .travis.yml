@@ -7,7 +7,7 @@ branches:
     - master
 before_script:
   - npm install -g now
-script: now --token $NOW_TOKEN --force
+script: now --token=$NOW_TOKEN --force
 after_script: now alias --token=$NOW_TOKEN
 env:
   global:
