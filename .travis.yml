@@ -4,7 +4,7 @@ node_js:
 cache: npm
 before_script:
   - npm install -g now
-script: now --token $NOW_TOKEN
+script: now --force --token $NOW_TOKEN
 after_script: now alias --token=$NOW_TOKEN
 env:
   global:
