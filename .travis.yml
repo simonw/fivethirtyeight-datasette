@@ -9,6 +9,7 @@ branches:
     - master
 before_script:
 - pip install --user csvs-to-sqlite
+- pip install --user Markdown==2.6.11
 - npm install -g now
 - curl -L -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
 - curl -L -o datasette.zip https://github.com/simonw/datasette/archive/master.zip
