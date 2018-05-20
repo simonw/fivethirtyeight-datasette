@@ -1,7 +1,7 @@
 FROM python:3.6-slim-stretch
 RUN apt-get update
 RUN apt-get install -y python3-dev gcc git
-ADD datasette.zip
+ADD datasette.zip .
 RUN pip install datasette.zip
 ADD fivethirtyeight.db .
 ADD metadata.json .
