@@ -1,11 +1,19 @@
 language: node_js
 node_js:
 - "node"
+python:
+- "3.6"
 cache: npm
 branches:
   only:
     - master
 before_script:
-  - npm install -g now
-script: now --token=$NOW_TOKEN --force
+- pip install --user csvs-to-sqlite
+- npm install -g now
+- curl -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
+- curl -o datasette.zip https://github.com/simonw/datasette/archive/master.zip
+- unzip data.zip
+- python make_metadata.py
+- csvs-to-sqlite data-master fivethirtyeight.db
+script: now --token=$NOW_TOKEN
 after_script: now alias --token=$NOW_TOKEN

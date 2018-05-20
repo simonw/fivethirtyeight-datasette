@@ -2,6 +2,7 @@ import glob
 import markdown
 import json
 import os
+import urllib
 
 
 def run():
@@ -18,11 +19,11 @@ def run():
             }
         }
     }
-    for filepath in glob.glob('data/*/README.md'):
-        filepath = filepath[len('data/'):]
+    for filepath in glob.glob('data-master/*/README.md'):
+        filepath = filepath[len('data-master/'):]
         topdir = filepath.split('/')[0]
         # Render markdown to HTML
-        markdown_txt = open(os.path.join('data', filepath)).read()
+        markdown_txt = open(os.path.join('data-master', filepath)).read()
         # If first line is an h1, extract that into title
         title = None
         lines = markdown_txt.split('\n')
@@ -39,10 +40,14 @@ def run():
             'This table contains'
         )
         # Use this as the description_html for any CSVs
-        for csv_filepath in glob.glob('data/{}/*.csv'.format(topdir)):
-            table = csv_filepath.split('.')[0].split('data/')[1]
+        for csv_filepath in glob.glob('data-master/{}/*.csv'.format(topdir)):
+            table = csv_filepath.split('.')[0].split('data-master/')[1]
             tables[table] = {
                 'description_html': html,
+                'source_url': urllib.parse.urljoin(
+                    'https://github.com/fivethirtyeight/data/blob/master/',
+                    table + '.csv',
+                )
             }
             if title:
                 tables[table]['title'] = '{}: {}'.format(
