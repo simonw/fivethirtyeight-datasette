@@ -10,8 +10,8 @@ branches:
 before_script:
 - pip install --user csvs-to-sqlite
 - npm install -g now
-- curl -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
-- curl -o datasette.zip https://github.com/simonw/datasette/archive/master.zip
+- curl -L -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
+- curl -L -o datasette.zip https://github.com/simonw/datasette/archive/master.zip
 - unzip data.zip
 - python make_metadata.py
 - csvs-to-sqlite data-master fivethirtyeight.db
