@@ -11,4 +11,4 @@ EXPOSE 8001
 
 CMD datasette serve fivethirtyeight.db --host 0.0.0.0 \
     --cors --port 8001 --inspect-file inspect-data.json -m metadata.json \
-    --limit facet_time_limit_ms:1000
+    --config facet_time_limit_ms:1000
