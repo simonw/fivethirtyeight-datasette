@@ -1,8 +1,8 @@
 FROM python:3.6-slim-stretch
 RUN apt-get update
 RUN apt-get install -y python3-dev gcc git
-ADD dist/*.whl .
-RUN pip install *.whl
+ADD datasette .
+RUN pip install datasette/
 ADD fivethirtyeight.db .
 ADD metadata.json .
 RUN datasette inspect fivethirtyeight.db --inspect-file inspect-data.json

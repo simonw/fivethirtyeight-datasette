@@ -13,7 +13,5 @@ before_script:
 - python make_metadata.py
 - csvs-to-sqlite data-master fivethirtyeight.db
 - git clone https://github.com/simonw/datasette.git
-- python datasette/setup.py bdist_wheel
-- rm -rf datasette
 script: now --token=$NOW_TOKEN
 after_script: now alias --token=$NOW_TOKEN
