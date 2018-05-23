@@ -2,7 +2,7 @@ FROM python:3.6-slim-stretch
 RUN apt-get update
 RUN apt-get install -y python3-dev gcc git
 ADD datasette .
-RUN pip install datasette/
+RUN cd datasette && pip install . && cd ..
 ADD fivethirtyeight.db .
 ADD metadata.json .
 RUN datasette inspect fivethirtyeight.db --inspect-file inspect-data.json
