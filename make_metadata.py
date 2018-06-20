@@ -10,7 +10,7 @@ def run():
     metadata = {
         'title': 'Five Thirty Eight',
         'license': 'CC Attribution 4.0 License',
-        'license_url': 'http://creativecommons.org/licenses/by/4.0/',
+        'license_url': 'https://creativecommons.org/licenses/by/4.0/',
         'source': 'fivethirtyeight/data on GitHub',
         'source_url': 'https://github.com/fivethirtyeight/data',
         'databases': {
