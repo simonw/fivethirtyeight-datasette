@@ -3,6 +3,7 @@ RUN apt-get update
 RUN apt-get install -y python3-dev gcc git
 ADD datasette/dist/*.whl .
 RUN pip install *.whl
+RUN pip install datasette-vega
 ADD fivethirtyeight.db .
 ADD metadata.json .
 RUN datasette inspect fivethirtyeight.db --inspect-file inspect-data.json
