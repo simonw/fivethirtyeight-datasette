@@ -1,4 +1,5 @@
 {
     "name": "fivethirtyeight-datasette",
-    "alias": "fivethirtyeight.datasettes.com"
+    "alias": "fivethirtyeight.datasettes.com",
+    "version": 1
 }
