@@ -7,7 +7,7 @@ branches:
 before_script:
 - pip install csvs-to-sqlite
 - pip install Markdown==2.6.11
-- pip install datasette
+- pip install https://github.com/simonw/datasette/archive/include-vcs-ignore.zip
 - npm install -g heroku
 - heroku plugins:install heroku-builds
 - curl -L -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
