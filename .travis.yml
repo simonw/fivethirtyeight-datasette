@@ -9,6 +9,7 @@ before_script:
 - pip install Markdown==2.6.11
 - pip install datasette
 - npm install -g heroku
+- heroku plugins:install heroku-builds
 - curl -L -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
 - unzip data.zip
 - python make_metadata.py
