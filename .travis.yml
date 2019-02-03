@@ -7,12 +7,10 @@ branches:
 before_script:
 - pip install csvs-to-sqlite
 - pip install Markdown==2.6.11
-- npm install -g now
+- pip install datasette
+- npm install -g heroku
 - curl -L -o data.zip https://github.com/fivethirtyeight/data/archive/master.zip
 - unzip data.zip
 - python make_metadata.py
 - csvs-to-sqlite data-master fivethirtyeight.db
-- git clone https://github.com/simonw/datasette.git
-- cd datasette && python setup.py bdist_wheel && cd ..
-script: now --token=$NOW_TOKEN
-after_script: now alias --token=$NOW_TOKEN
+script: datasette publish heroku fivethirtyeight.db -m metadata.json -n fivethirtyeight-datasette
