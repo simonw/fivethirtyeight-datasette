@@ -15,9 +15,9 @@ before_script:
 - python make_metadata.py
 - csvs-to-sqlite data-master fivethirtyeight.db
 script:
-- datasette publish heroku fivethirtyeight.db && \
-  -m metadata.json && \
-  -n fivethirtyeight-datasette && \
-  --install=datasette-vega && \
-  --install=datasette-jellyfish && \
+- datasette publish heroku fivethirtyeight.db &&
+  -m metadata.json &&
+  -n fivethirtyeight-datasette &&
+  --install=datasette-vega &&
+  --install=datasette-jellyfish &&
   --branch=master
