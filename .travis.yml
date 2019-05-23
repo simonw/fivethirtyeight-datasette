@@ -20,5 +20,5 @@ script:
   -n fivethirtyeight-datasette
   --install=datasette-vega
   --install=datasette-jellyfish
-  --version-note=$TRAVIS_COMMIT
+  --version-note=$(curl -s "https://api.github.com/repos/simonw/datasette/commits/master" | jq -r .sha)
   --branch=master
