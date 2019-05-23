@@ -15,10 +15,11 @@ before_script:
 - python make_metadata.py
 - csvs-to-sqlite data-master fivethirtyeight.db
 script:
+- export LATEST_DATASETTE=`curl -s "https://api.github.com/repos/simonw/datasette/commits/master" | jq -r .sha`
 - datasette publish heroku fivethirtyeight.db
   -m metadata.json
   -n fivethirtyeight-datasette
   --install=datasette-vega
   --install=datasette-jellyfish
-  --version-note=$(curl -s "https://api.github.com/repos/simonw/datasette/commits/master" | jq -r .sha)
-  --branch=master
+  --version-note=$LATEST_DATASETTE
+  --branch=$LATEST_DATASETTE
