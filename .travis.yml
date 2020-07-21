@@ -21,6 +21,6 @@ script:
   -n fivethirtyeight-datasette
   --install=datasette-vega
   --install=datasette-jellyfish
-  --install=datasette-copyable
+  --install=datasette-copyable>=0.2
   --version-note=$LATEST_DATASETTE
   --branch=$LATEST_DATASETTE
