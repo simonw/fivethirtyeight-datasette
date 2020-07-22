@@ -1,0 +1,50 @@
+name: Deploy demo
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '15 0 * * *'
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out this repo
+      uses: actions/checkout@v2
+    - name: Check out fivethirtyeight/data
+      uses: actions/checkout@v2
+      with:
+        repository: fivethirtyeight/data
+        path: data
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - uses: actions/cache@v2
+    - name: Install Python dependencies
+      run: |
+        pip install csvs-to-sqlite  Markdown==2.6.11 https://github.com/simonw/datasette/archive/master.zip
+    - name: Build metadata
+      run: python make_metadata.py
+    - name: Build database
+      run: csvs-to-sqlite data fivethirtyeight.db
+    - name: Deploy to Heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: |-
+        export LATEST_DATASETTE=`curl -s "https://api.github.com/repos/simonw/datasette/commits/master" | jq -r .sha`
+        npm install -g heroku
+        heroku plugins:install heroku-builds
+        datasette publish heroku fivethirtyeight.db \
+          -m metadata.json \
+          -n fivethirtyeight-datasette \
+          --install=datasette-vega \
+          --install=datasette-jellyfish \
+          --install='datasette-copyable>=0.2' \
+          --version-note=$LATEST_DATASETTE \
+          --branch=$LATEST_DATASETTE
