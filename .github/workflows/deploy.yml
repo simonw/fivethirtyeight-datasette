@@ -25,7 +25,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - uses: actions/cache@v2
     - name: Install Python dependencies
       run: |
         pip install csvs-to-sqlite  Markdown==2.6.11 https://github.com/simonw/datasette/archive/master.zip
