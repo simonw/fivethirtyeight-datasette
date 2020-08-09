@@ -29,7 +29,7 @@ jobs:
         node-version: '12'
     - name: Install Python dependencies
       run: |
-        pip install csvs-to-sqlite  Markdown==2.6.11 https://github.com/simonw/datasette/archive/master.zip
+        pip install -r requirements.txt
     - name: Build metadata
       run: python make_metadata.py
     - name: Build database

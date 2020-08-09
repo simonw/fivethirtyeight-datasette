@@ -1,0 +1,7 @@
+csvs-to-sqlite
+Markdown==2.6.11
+datasette
+datasette-graphql
+datasette-vega
+datasette-jellyfish
+datasette-copyable
