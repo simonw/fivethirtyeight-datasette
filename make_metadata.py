@@ -13,6 +13,8 @@ def run():
         'license_url': 'https://creativecommons.org/licenses/by/4.0/',
         'source': 'fivethirtyeight/data on GitHub',
         'source_url': 'https://github.com/fivethirtyeight/data',
+        'about': 'simonw/fivethirtyeight-datasette',
+        'about_url': 'https://github.com/simonw/fivethirtyeight-datasette',
         'databases': {
             'fivethirtyeight': {
                 'tables': tables

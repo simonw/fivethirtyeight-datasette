@@ -38,7 +38,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |-
-        export LATEST_DATASETTE=`curl -s "https://api.github.com/repos/simonw/datasette/commits/master" | jq -r .sha`
+        export LATEST_DATASETTE=`curl -s "https://api.github.com/repos/simonw/datasette/commits/main" | jq -r .sha`
         npm install -g heroku
         heroku plugins:install heroku-builds
         datasette publish heroku fivethirtyeight.db \
