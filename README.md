@@ -1,6 +1,6 @@
 # fivethirtyeight-datasette
 
-[![Travis CI](https://travis-ci.org/simonw/fivethirtyeight-datasette.svg?branch=master)](https://travis-ci.org/simonw/fivethirtyeight-datasette)
+![Deploy demo](https://github.com/simonw/fivethirtyeight-datasette/workflows/Deploy%20demo/badge.svg)
 
 Script to pull CSVs from https://github.com/fivethirtyeight/data
 and build those into a SQLite database, then generate appropriate metadata from
