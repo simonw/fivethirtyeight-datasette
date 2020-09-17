@@ -40,7 +40,7 @@ jobs:
     - name: Build databases
       run: |-
         csvs-to-sqlite data fivethirtyeight.db
-        csvs-to-sqlite polls polls.db
+        csvs-to-sqlite polls/*.csv polls.db
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
