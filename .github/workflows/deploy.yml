@@ -19,6 +19,11 @@ jobs:
       with:
         repository: fivethirtyeight/data
         path: data
+    - name: Check out fivethirtyeight-polls
+      uses: actions/checkout@v2
+      with:
+        repository: simonw/fivethirtyeight-polls
+        path: polls
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -32,8 +37,10 @@ jobs:
         pip install -r requirements.txt
     - name: Build metadata
       run: python make_metadata.py
-    - name: Build database
-      run: csvs-to-sqlite data fivethirtyeight.db
+    - name: Build databases
+      run: |-
+        csvs-to-sqlite data fivethirtyeight.db
+        csvs-to-sqlite polls polls.db
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -41,7 +48,7 @@ jobs:
         export LATEST_DATASETTE=`curl -s "https://api.github.com/repos/simonw/datasette/commits/main" | jq -r .sha`
         npm install -g heroku
         heroku plugins:install heroku-builds
-        datasette publish heroku fivethirtyeight.db \
+        datasette publish heroku fivethirtyeight.db polls.db \
           -m metadata.json \
           -n fivethirtyeight-datasette \
           --install=datasette-vega \
