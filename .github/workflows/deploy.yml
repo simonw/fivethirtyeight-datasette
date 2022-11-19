@@ -27,7 +27,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: "3.11"
     - name: Set up Node
       uses: actions/setup-node@v1
       with:
@@ -53,7 +53,7 @@ jobs:
           -n fivethirtyeight-datasette \
           --install=datasette-vega \
           --install=datasette-jellyfish \
-          --install=datasette-graphql \
+          --install='datasette-graphql>=2.1.2' \
           --install='datasette-copyable>=0.2' \
           --version-note=$LATEST_DATASETTE \
           --branch=$LATEST_DATASETTE
