@@ -1,7 +1,7 @@
 csvs-to-sqlite
 Markdown==2.6.11
 datasette>=0.63.2
-datasette-graphql
+datasette-graphql>=2.1.2
 datasette-vega
 datasette-jellyfish
 datasette-copyable
